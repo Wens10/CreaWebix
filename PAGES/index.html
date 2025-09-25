@@ -6,34 +6,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/CSS/style.css">
 	<script src="/JS/burgermenu.js" defer></script>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-	<title>Document</title>
+	<title>CreaWebix - Agence Web</title>
 </head>
+
 
 <body>
 	<!-- BARRE_DE_NAV -->
 	<nav>
 		<div class="logo">
-			<a id="title">CreaWebix</a>
+			<a href="#home" id="title">CreaWebix</a>
 			<div class="underline"></div>
 		</div>
 
 		<div class="nav-links">
-			<a href="">Accueil</a>
-			<a href="">Services</a>
-			<a href="">Portfolio</a>
-			<a href="">À propos</a>
-			<a href="">Contact</a>
-			<a href="" class="btn-burger">Devis Gratuit</a>
+			<a href="#home">Accueil</a>
+			<a href="#services">Services</a>
+			<!-- <a href="#portfolio">Portfolio</a>
+			<a href="#about">À propos</a> -->
+			<a href="#contact">Contact</a>
+			<a href="#contact" class="btn-burger">Devis Gratuit</a>
 		</div>
-		<a href="" id="devis" class="btn">Devis Gratuit</a>
+		<a href="#contact"  class="btn">Devis Gratuit</a>
 		<!-- Bouton hamburger pour mobile -->
 		<div class="burger">&#9776;</div>
 	</nav>
 
-	<!-- SECTION_PRESENTATION -->
-	<main>
-		<section>
+	<!-- MAIN CONTENT -->
+	<main id="home">
+		<!-- SECTION_PRESENTATION -->
+		<section class="presentation">
 			<div class="content">
 				<h1>Créons ensemble votre présence digitale</h1>
 				<p>
@@ -41,8 +45,8 @@
 					De l'idée à la réalisation, nous donnons vie à vos projets digitaux.
 				</p>
 				<div class="btn-container">
-					<a href="" class="bton">Démarrer un projet</a>
-					<a href="" class="btn transparent">Voir nos réalisations</a>
+					<a href="#contact" class="bton">Démarrer un projet</a>
+					<!-- <a href="" class="btn transparent">Voir nos réalisations</a> -->
 				</div>
 				<div class="infos">
 					<p>
@@ -52,14 +56,14 @@
 						<span>98%</span><br> Clients satisfaits
 					</p>
 					<p>
-						<span>3 ans</span><br> D'expérience
+						<span>2 ans</span><br> D'expérience
 					</p>
 				</div>
 			</div>
 			<div class="image-container">
-				
-					<img src="/IMAGES/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg" class="image"
-						alt="Image Accueil">
+
+				<img src="/IMAGES/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg" class="image"
+					alt="Image Accueil">
 				<div class="overlay1">
 					<img src="/ICONS/mobile.png" alt="">
 					<div>
@@ -83,6 +87,208 @@
 				</div>
 			</div>
 		</section>
+		<!-- SECTION_SERVICES -->
+		<section class="services" id="services">
+			<br>
+			<br>
+			<br>
+			<div class="services-header">
+				<span class="tag">Nos Services</span>
+				<h2>Des solutions web complètes pour votre entreprise</h2>
+				<p>
+					Nous accompagnons les entreprises dans leur transformation digitale avec des services adaptés
+					à chaque besoin et budget.
+				</p>
+			</div>
+
+			<div class="services-grid">
+				<!-- Carte 1 -->
+				<div class="card">
+					<i class="fa-solid fa-globe icon"></i>
+					<div class="card-price">À partir de 1 200€</div>
+					<h3>Sites Web Vitrine</h3>
+					<p>Sites élégants et professionnels pour présenter votre entreprise et vos services avec impact.
+					</p>
+					<ul>
+						<li>Design responsive</li>
+						<li>Optimisation SEO</li>
+						<li>Formulaires de contact</li>
+						<li>Analytics intégrés</li>
+					</ul>
+					<a href="service-vitrine.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 2 -->
+				<div class="card">
+					<i class="fa-solid fa-cart-shopping icon"></i>
+					<div class="card-price">À partir de 2 500€</div>
+					<h3>E-commerce</h3>
+					<p>Boutiques en ligne complètes avec gestion des commandes, paiements sécurisés et tableau de
+						bord.</p>
+					<ul>
+						<li>Catalogue produits</li>
+						<li>Paiements sécurisés</li>
+						<li>Gestion stocks</li>
+						<li>Livraisons</li>
+					</ul>
+					<a href="service-ecommerce.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 3 -->
+				<div class="card">
+					<i class="fa-solid fa-mobile-screen icon"></i>
+					<div class="card-price">Sur devis</div>
+					<h3>Applications Web</h3>
+					<p>Applications web sur-mesure adaptées à vos besoins métiers avec interface intuitive.</p>
+					<ul>
+						<li>Interface personnalisée</li>
+						<li>Base de données</li>
+						<li>API intégrées</li>
+						<li>Dashboard admin</li>
+					</ul>
+					<a href="service-applications.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 4 -->
+				<div class="card">
+					<i class="fa-solid fa-magnifying-glass icon"></i>
+					<div class="card-price">À partir de 800€</div>
+					<h3>Référencement SEO</h3>
+					<p>Optimisation complète pour améliorer votre visibilité sur les moteurs de recherche.</p>
+					<ul>
+						<li>Audit SEO complet</li>
+						<li>Optimisation technique</li>
+						<li>Contenu optimisé</li>
+						<li>Suivi performances</li>
+					</ul>
+					<a href="service-seo.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 5 -->
+				<div class="card">
+					<i class="fa-solid fa-palette icon"></i>
+					<div class="card-price">À partir de 600€</div>
+					<h3>Design UI/UX</h3>
+					<p>Conception d’interfaces utilisateur modernes et expériences utilisateur optimisées.</p>
+					<ul>
+						<li>Maquettes Figma</li>
+						<li>Prototypage</li>
+						<li>Tests utilisateurs</li>
+						<li>Design system</li>
+					</ul>
+					<a href="service-uiux.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 6 -->
+				<div class="card">
+					<i class="fa-solid fa-screwdriver-wrench icon"></i>
+					<div class="card-price">À partir de 120€/mois</div>
+					<h3>Maintenance & Support</h3>
+					<p>Maintenance technique, mises à jour de sécurité et support continu pour vos sites.</p>
+					<ul>
+						<li>Sauvegardes régulières</li>
+						<li>Mises à jour</li>
+						<li>Monitoring</li>
+						<li>Support technique</li>
+					</ul>
+					<a href="service-maintenance.html">En savoir plus →</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION_CONTACT -->
+		 <br>
+		 <br>
+		 <br>
+		<section id="contact" class="contact">
+
+			<div class="contact-header">
+				<span class="tag">Contact</span>
+
+				<h2>Prêt à démarrer votre projet ?</h2>
+				<p>
+					Contactez-nous pour discuter de votre projet. Nous vous répondrons dans les 24h avec une
+					proposition
+					personnalisée et un devis gratuit.
+				</p>
+			</div>
+			<div class="contact-grid">
+				<!-- Infos de contact -->
+				<div class="contact-info">
+					<h3>Parlons de votre projet</h3>
+					<p>
+						Nous sommes là pour vous accompagner dans la réalisation de vos ambitions digitales.
+						Contactez-nous pour échanger sur vos besoins et obtenir un devis personnalisé.
+					</p>
+
+					<div class="info-cards">
+						<div class="info-card">
+							<h4 class="fas fa-map-marker-alt"> Adresse</h4>
+							<p>123 Rue de la Créativité<br>75001 Paris, France</p>
+						</div>
+						<div class="info-card">
+							<h4 class="fas fa-phone"> Téléphone</h4>
+							<p>+33 1 23 45 67 89</p>
+						</div>
+						<div class="info-card">
+							<h4 class="fas fa-envelope"> Email</h4>
+							<p>contact@creawebix.fr</p>
+						</div>
+						<div class="info-card">
+							<h4 class="fas fa-clock"> Horaires</h4>
+							<p>Lun - Ven : 9h00 - 18h00<br>Samedi : 9h00 - 12h00</p>
+						</div>
+					</div>
+
+					<div class="process">
+						<h3>Notre Processus</h3>
+						<ul>
+							<li><strong>Consultation gratuite</strong> – Échange sur vos besoins et objectifs</li>
+							<li><strong>Devis personnalisé</strong> – Proposition détaillée sous 48h</li>
+							<li><strong>Développement</strong> – Réalisation avec suivi régulier</li>
+							<li><strong>Livraison & Support</strong> – Formation et accompagnement</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Formulaire -->
+				<div class="contact-form">
+					<h3>Demander un devis</h3>
+					<form>
+						<div class="form-group">
+							<input type="text" placeholder="Nom complet *" required>
+							<input type="email" placeholder="Email *" required>
+						</div>
+						<div class="form-group">
+							<input type="text" placeholder="Téléphone">
+							<select>
+								<option value="">Type de service *</option>
+								<option>Site Vitrine</option>
+								<option>E-commerce</option>
+								<option>Application Web</option>
+								<option>SEO</option>
+								<option>Design UI/UX</option>
+								<option>Maintenance</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select>
+								<option value="">Budget estimé</option>
+								<option>- de 1000€</option>
+								<option>1000€ - 5000€</option>
+								<option>+ de 5000€</option>
+							</select>
+						</div>
+						<textarea placeholder="Décrivez votre projet *" required></textarea>
+						<button type="submit" class="btn-submit">Envoyer ma demande</button>
+					</form>
+				</div>
+			</div>
+
+		</section>
+
+
+
 	</main>
 
 	<!-- FOOTER -->
@@ -124,12 +330,12 @@
 			<div class="footer-col">
 				<h4>Services</h4>
 				<ul>
-					<li><a href="#">Sites Web Vitrine</a></li>
-					<li><a href="#">E-commerce</a></li>
-					<li><a href="#">Applications Web</a></li>
-					<li><a href="#">Référencement SEO</a></li>
-					<li><a href="#">Design UI/UX</a></li>
-					<li><a href="#">Maintenance</a></li>
+					<li><a href="service-vitrine.html">Sites Web Vitrine</a></li>
+					<li><a href="service-ecommerce.html">E-commerce</a></li>
+					<li><a href="service-applications.html">Applications Web</a></li>
+					<li><a href="service-seo.html">Référencement SEO</a></li>
+					<li><a href="service-uiux.html">Design UI/UX</a></li>
+					<li><a href="service-maintenance.html">Maintenance</a></li>
 				</ul>
 			</div>
 
@@ -137,11 +343,11 @@
 			<div class="footer-col">
 				<h4>Entreprise</h4>
 				<ul>
-					<li><a href="#">À Propos</a></li>
-					<li><a href="#">Portfolio</a></li>
+					<li><a href="index.html#about">À Propos</a></li>
+					<li><a href="index.html#portfolio">Portfolio</a></li>
 					<li><a href="#">Blog</a></li>
 					<li><a href="#">Témoignages</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
 				</ul>
 			</div>
 
@@ -171,7 +377,16 @@
 		</div>
 	</footer>
 
-
+	<script>
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener("click", function (e) {
+				e.preventDefault();
+				document.querySelector(this.getAttribute("href")).scrollIntoView({
+					behavior: "smooth"
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

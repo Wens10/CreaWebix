@@ -1,0 +1,63 @@
+html,
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.service-detail {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.service-detail h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.service-detail p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.service-detail ul {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-detail ul li {
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.service-detail ul li::before {
+  content: "✔";
+  color: red;
+  position: absolute;
+  left: 0;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: rgb(171, 30, 5);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.cta:hover {
+  background: darkred;
+}
