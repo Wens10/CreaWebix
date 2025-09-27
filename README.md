@@ -1,10 +1,3 @@
-# Site Web - Serveur Node.js
-
-Ce projet est un serveur web basé sur Node.js.  
-Il permet notamment de recevoir un formulaire de devis et d’envoyer les données par e-mail.
-
----
-
 ## ⚙️ Installation et lancement
 
 1. **Cloner le projet**  
