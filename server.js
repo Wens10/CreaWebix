@@ -1,7 +1,7 @@
 import { constants, createSecureServer, Http2ServerRequest, Http2ServerResponse } from "http2";
 import { brotliCompress, deflate, gzip, zstdCompress } from "zlib";
 import config from "./config.json" with { type: "json" };
-import { createReadStream, readdir, readdirSync, readFile, readFileSync, unlinkSync, writeFile } from "fs";
+import { createReadStream, mkdirSync, readdir, readdirSync, readFile, readFileSync, unlinkSync, writeFile } from "fs";
 import { dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 import { createServer, IncomingMessage, ServerResponse } from "http";
@@ -39,7 +39,8 @@ transporter = createTransport({
 		user: emailSenderConfig.sender
 	},
 	secure: true
-});
+}),
+COMPONENT_REGEX = /(?<!\\)(?:\\\\)*\[[A-z]+\]/g;
 
 function cleanCompressedFiles(dir) {
   const items = readdirSync(dir, { withFileTypes: true });
@@ -97,13 +98,59 @@ function compressFile(filePath) {
 };
 
 /**
- * @param { string } dirPath 
- * @param { string[] } except 
+ * @param { string } filePath 
  */
-function compressDir(dirPath, except = []) {
+function compressHTMLFile(filePath) {
+	readFile(filePath, (err, data) => {
+		if (err) console.log(`[compressDir] readFile (${dest})`, err);
+		else resolveHTMLComponents(data.toString()).then(res => {
+			const dest = filePath.replace("src", "dist");
+
+			writeFile(dest, res, err => {
+				if (err) console.log(`[compressDir] writeFile (${dest})`, err);
+			});
+			
+			brotliCompress(res, (err, res) => {
+				if (err) console.log(`[compressDir] brotliCompress (${dest})`, err);
+				else writeFile(`${dest}.br`, res, err => {
+					if (err) console.log(`[compressDir] writeFile brotliCompress (${dest})`, err);
+				});
+			});
+
+			zstdCompress(res, (err, res) => {
+				if (err) console.log(`[compressDir] zstdCompress (${dest})`, err);
+				else writeFile(`${dest}.zst`, res, err => {
+					if (err) console.log(`[compressDir] writeFile zstdCompress (${dest})`, err);
+				});
+			});
+
+			deflate(res, (err, res) => {
+				if (err) console.log(`[compressDir] deflate (${dest})`, err);
+				else writeFile(`${dest}.deflate`, res, err => {
+					if (err) console.log(`[compressDir] writeFile deflate (${dest})`, err);
+				});
+			});
+
+			gzip(res, (err, res) => {
+				if (err) console.log(`[compressDir] gzip (${dest})`, err);
+				else writeFile(`${dest}.gz`, res, err => {
+					if (err) console.log(`[compressDir] writeFile gzip (${dest})`, err);
+				});
+			});
+		}).catch(reason => console.log(`[compressDir] resolveHTMLComponents (${filePath})`, reason));
+	});
+};
+
+/**
+ * @param { string } dirPath 
+ * @param { { except?: string[], method?: Function } } options 
+ */
+function compressDir(dirPath, options) {
+	const except = options?.except || [], method = options?.method || compressFile;
+
 	readdir(dirPath, (err, files) => {		
 		if (err) console.log(`[compressDir] readdir (${dirPath})`, err);
-		else files.filter(file => !except.includes(file)).forEach(file => compressFile(`${dirPath}/${file}`));
+		else files.filter(file => !except.includes(file)).forEach(file => method(`${dirPath}/${file}`));
 	});
 };
 
@@ -136,6 +183,38 @@ function handleHttp1Request(req, res) {
 		if (!implementedMethods.includes(method)) return res.writeHead(501).end();
 
 		switch (path) {
+			// Forms
+			case "/message":
+				switch (method) {
+					case "POST":
+						let data = "";
+
+						req.on("data", chunk => data += chunk).on("end", () => {
+							const params = new URLSearchParams(data),
+							nom = params.get("nom"),
+							email = params.get("email"),
+							tel = params.get("tel"),
+							service = params.get("service"),
+							budget = params.get("budget"),
+							descr = params.get("descr");
+
+							transporter.sendMail({
+								from: emailSenderConfig.sender,
+								to: emailSenderConfig.receiver,
+								subject: "Nouveau devis",
+								text: `Nom: ${nom}\nEmail: ${email}\nTéléphone: ${tel || "aucun"}\nService: ${service || "aucun"}\nBudget: ${budget || "aucun"}\nDescription :\n${descr}`
+							}, err => {
+								if (err) console.error("[sendMail]", err);
+
+								res.writeHead(303, { location: "/" }).end();
+							});
+						});
+						break;
+					default:
+						res.writeHead(405, { allow: "POST" }).end();
+						break;
+				};
+			break;
 			// Images
 			case "/IMAGES/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg":
 				switch (method) {
@@ -277,7 +356,7 @@ function handleHttp1Request(req, res) {
 			case "/":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/index.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/index.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -296,7 +375,7 @@ function handleHttp1Request(req, res) {
 			case "/service-applications":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-applications.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-applications.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -315,7 +394,7 @@ function handleHttp1Request(req, res) {
 			case "/service-ecommerce":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-ecommerce.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-ecommerce.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -334,7 +413,7 @@ function handleHttp1Request(req, res) {
 			case "/service-maintenance":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-maintenance.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-maintenance.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -353,7 +432,7 @@ function handleHttp1Request(req, res) {
 			case "/service-seo":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-seo.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-seo.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -372,7 +451,7 @@ function handleHttp1Request(req, res) {
 			case "/service-uiux":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-uiux.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-uiux.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -391,7 +470,7 @@ function handleHttp1Request(req, res) {
 			case "/service-vitrine":
 				switch (method) {
 					case "GET":
-						readFile(`./PAGES/service-vitrine.html${fileExts[encoding]}`, (err, data) => {
+						readFile(`./dist/pages/service-vitrine.html${fileExts[encoding]}`, (err, data) => {
 							if (err) {
 								console.error(`GET ${path}`, err);
 
@@ -414,11 +493,40 @@ function handleHttp1Request(req, res) {
   };
 };
 
+/**
+ * @param { string } data 
+ */
+function resolveHTMLComponents(data) {
+	let newData = data, componentsLoaded = 0;
+
+	const components = data.match(COMPONENT_REGEX);
+
+	return new Promise((resolve, reject) => {
+		if (components) for (const component of components) {
+			const componentName = component.replace(/[\\\[\]]/g, "");
+
+			readFile(`./src/components/${componentName}.html`, (err, data) => {
+				if (err) reject(err);
+				else {
+					newData = newData.replace(component, data);
+
+					componentsLoaded++;
+
+					if (components.length === componentsLoaded) resolve(newData);
+				};
+			});
+		}
+		else resolve(newData);
+	});
+};
+
+mkdirSync("./dist/pages", { recursive: true });
+
 cleanCompressedFiles(__dirname);
 
 compressDir("./CSS");
 compressDir("./JS");
-compressDir("./PAGES");
+compressDir("./src/pages", { method: compressHTMLFile });
 
 // HTTPS Server
 if (certPath && keyPath) createSecureServer({
@@ -445,12 +553,12 @@ if (certPath && keyPath) createSecureServer({
 						service = params.get("service"),
 						budget = params.get("budget"),
 						descr = params.get("descr");
-						
+
 						transporter.sendMail({
 							from: emailSenderConfig.sender,
 							to: emailSenderConfig.receiver,
 							subject: "Nouveau devis",
-							text: `Nom: ${nom}\nEmail: ${email}\nEmail: ${email}\nTéléphone: ${tel || "aucun"}\nService: ${service || "aucun"}\Budget: ${budget || "aucun"}\nDescription :\n${descr}`
+							text: `Nom: ${nom}\nEmail: ${email}\nTéléphone: ${tel || "aucun"}\nService: ${service || "aucun"}\nBudget: ${budget || "aucun"}\nDescription :\n${descr}`
 						}, err => {
 							if (err) console.error("[sendMail]", err);
 
@@ -606,7 +714,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/index.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/index.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -625,7 +733,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-applications.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-applications.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -644,7 +752,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-ecommerce.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-ecommerce.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -663,7 +771,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-maintenance.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-maintenance.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -682,7 +790,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-seo.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-seo.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -701,7 +809,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-uiux.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-uiux.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
@@ -720,7 +828,7 @@ if (certPath && keyPath) createSecureServer({
 				case "GET":
 					stream.respond({ ":status": 200, ...defaultHeaders.HTML, "content-encoding": encoding });
 
-					createReadStream(`./PAGES/service-vitrine.html${fileExts[encoding]}`).on("error", (err) => {
+					createReadStream(`./dist/pages/service-vitrine.html${fileExts[encoding]}`).on("error", (err) => {
 					  console.error(`GET ${path}`, err);
 
 					  stream.close(constants.NGHTTP2_CANCEL);
