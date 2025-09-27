@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Wens10/CreaWebix/issues"
   },
-  "homepage": "https://github.com/Wens10/CreaWebix#readme"
+  "homepage": "https://github.com/Wens10/CreaWebix#readme",
+  "dependencies": {
+    "nodemailer": "^7.0.6"
+  }
 }

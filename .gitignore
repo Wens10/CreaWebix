@@ -3,4 +3,6 @@
 *.deflate
 *.gz
 *.zst
+node_modules
+package-lock.json
 config.json

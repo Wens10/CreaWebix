@@ -254,32 +254,32 @@
 				<!-- Formulaire -->
 				<div class="contact-form">
 					<h3>Demander un devis</h3>
-					<form>
+					<form method="post" action="/message">
 						<div class="form-group">
-							<input type="text" placeholder="Nom complet *" required>
-							<input type="email" placeholder="Email *" required>
+							<input type="text" placeholder="Nom complet *" name="nom" id="nom" required>
+							<input type="email" placeholder="Email *" name="email" id="email" required>
 						</div>
 						<div class="form-group">
-							<input type="text" placeholder="Téléphone">
-							<select>
+							<input type="tel" placeholder="Téléphone" name="tel" id="tel">
+							<select name="service" id="service">
 								<option value="">Type de service *</option>
-								<option>Site Vitrine</option>
-								<option>E-commerce</option>
-								<option>Application Web</option>
-								<option>SEO</option>
-								<option>Design UI/UX</option>
-								<option>Maintenance</option>
+								<option value="site-vitrine">Site Vitrine</option>
+								<option value="e-commerce">E-commerce</option>
+								<option value="app-web">Application Web</option>
+								<option value="seo">SEO</option>
+								<option value="design-uiux">Design UI/UX</option>
+								<option value="maintenance">Maintenance</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<select>
+							<select name="budget" id="budget">
 								<option value="">Budget estimé</option>
-								<option>- de 1000€</option>
-								<option>1000€ - 5000€</option>
-								<option>+ de 5000€</option>
+								<option value="-1000">- de 1000€</option>
+								<option value="1000-5000">1000€ - 5000€</option>
+								<option value="+5000">+ de 5000€</option>
 							</select>
 						</div>
-						<textarea placeholder="Décrivez votre projet *" required></textarea>
+						<textarea placeholder="Décrivez votre projet *" name="descr" id="descr" required></textarea>
 						<button type="submit" class="btn-submit">Envoyer ma demande</button>
 					</form>
 				</div>

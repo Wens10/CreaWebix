@@ -5,8 +5,9 @@ import { createReadStream, readdir, readdirSync, readFile, readFileSync, unlinkS
 import { dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 import { createServer, IncomingMessage, ServerResponse } from "http";
+import { createTransport } from "nodemailer";
 
-const { certPath, keyPath, port } = config,
+const { certPath, keyPath, port, emailSenderConfig } = config,
 supportedEncoding = ["br", "zstd", "gzip", "deflate", "*"],
 extensionsToDelete = [".zst", ".br", ".deflate", ".gz"],
 __dirname = dirname(fileURLToPath(import.meta.url)),
@@ -29,7 +30,16 @@ defaultHeaders = {
 	JS: {
 		"content-type": "application/javascript; charset=UTF-8"
 	},
-};
+},
+transporter = createTransport({
+	host: emailSenderConfig.host,
+	port: emailSenderConfig.port,
+	auth: {
+		pass: emailSenderConfig.password,
+		user: emailSenderConfig.sender
+	},
+	secure: true
+});
 
 function cleanCompressedFiles(dir) {
   const items = readdirSync(dir, { withFileTypes: true });
@@ -421,6 +431,38 @@ if (certPath && keyPath) createSecureServer({
 	if (!implementedMethods.includes(method)) return stream.respond({ ":status": 501 }, { endStream: true });
 
 	switch (path) {
+		// Forms
+		case "/message":
+			switch (method) {
+				case "POST":
+					let data = "";
+
+					stream.on("data", chunk => data += chunk).on("end", () => {
+						const params = new URLSearchParams(data),
+						nom = params.get("nom"),
+						email = params.get("email"),
+						tel = params.get("tel"),
+						service = params.get("service"),
+						budget = params.get("budget"),
+						descr = params.get("descr");
+						
+						transporter.sendMail({
+							from: emailSenderConfig.sender,
+							to: emailSenderConfig.receiver,
+							subject: "Nouveau devis",
+							text: `Nom: ${nom}\nEmail: ${email}\nEmail: ${email}\nTéléphone: ${tel || "aucun"}\nService: ${service || "aucun"}\Budget: ${budget || "aucun"}\nDescription :\n${descr}`
+						}, err => {
+							if (err) console.error("[sendMail]", err);
+
+							stream.respond({ ":status": 303, location: "/" }, { endStream: true });
+						});
+					});
+					break;
+				default:
+					stream.respond({ ":status": 405, allow: "POST" }, { endStream: true });
+					break;
+			};
+			break;
 		// Images
 		case "/IMAGES/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg":
 			switch (method) {
