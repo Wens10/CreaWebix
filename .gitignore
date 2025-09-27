@@ -1,0 +1,6 @@
+*.pem
+*.br
+*.deflate
+*.gz
+*.zst
+config.json
