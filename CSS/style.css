@@ -719,7 +719,9 @@ footer hr {
 }
 
 .card {
-    background: white;
+    background: rgb(0, 0, 0);
+    color: white;
+    border: rgba(255, 68, 0, 0.716) 1px solid;
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -734,7 +736,7 @@ footer hr {
 
 .card .icon {
     font-size: 28px;
-    color: #444;
+    color:whitesmoke;
     margin-bottom: 15px;
 }
 
@@ -755,7 +757,7 @@ footer hr {
 }
 
 .card p {
-    color: #555;
+    color: whitesmoke;
     margin: 10px 0 15px;
     font-size: 15px;
 }
@@ -776,11 +778,11 @@ footer hr {
     content: "•";
     position: absolute;
     left: 0;
-    color: #555;
+    color: whitesmoke;
 }
 
 .card a {
-    color: #333;
+    color:whitesmoke;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s ease;
