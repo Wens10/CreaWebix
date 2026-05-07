@@ -1,63 +1,104 @@
-html,
-body {
-    font-family: Arial, sans-serif;
+/* ============================================================
+   CSS PAGES SERVICE — CréaWebix
+   Palette partagée via variables héritées de style.css
+   ============================================================ */
+
+:root {
+    --bg-dark:       #0a0a1a;
+    --bg-card:       #0f0f2a;
+    --cyan:          #00d4ff;
+    --violet:        #7c3aed;
+    --mauve:         #a855f7;
+    --gold:          #f59e0b;
+    --white:         #ffffff;
+    --text-muted:    #94a3b8;
+    --border:        rgba(0, 212, 255, 0.18);
+    --shadow-glow:   0 0 24px rgba(0, 212, 255, 0.1);
+    --radius:        0.875rem;
+    --font-body:     'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html, body {
+    font-family: var(--font-body);
     height: 100%;
     margin: 0;
+    background: var(--bg-dark);
+    color: var(--white);
     display: flex;
     flex-direction: column;
 }
+
+/* ── DETAIL PAGE ── */
 .service-detail {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: 960px;
+    margin: 80px auto 60px;
+    padding: 40px 44px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-glow), 0 8px 40px rgba(0,0,0,0.35);
 }
 
 .service-detail h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--white) 30%, var(--cyan) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.25;
 }
 
 .service-detail p {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
 }
 
 .service-detail ul {
-  margin: 20px 0;
-  padding: 0;
-  list-style: none;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
 }
 
 .service-detail ul li {
-  margin-bottom: 10px;
-  padding-left: 25px;
-  position: relative;
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+    line-height: 1.5;
 }
 
 .service-detail ul li::before {
-  content: "✔";
-  color: red;
-  position: absolute;
-  left: 0;
+    content: "✓";
+    color: var(--cyan);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
 }
 
+/* ── CTA ── */
 .cta {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: rgb(171, 30, 5);
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s ease;
+    display: inline-block;
+    margin-top: 24px;
+    padding: 13px 28px;
+    background: linear-gradient(135deg, var(--cyan), var(--violet));
+    color: var(--white);
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.97rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25);
+    transition: opacity 0.2s, box-shadow 0.2s;
 }
 
 .cta:hover {
-  background: darkred;
+    opacity: 0.85;
+    box-shadow: 0 6px 28px rgba(0, 212, 255, 0.4);
 }
+
+/* ── Fin CSS PAGES SERVICE ── */
