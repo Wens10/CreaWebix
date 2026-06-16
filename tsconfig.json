@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": false
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.backend.json"
+    },
+    {
+      "path": "./tsconfig.frontend.json"
+    }
+  ]
+}

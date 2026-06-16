@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/CSS/style.css">
+	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<meta name="apple-mobile-web-app-title" content="CréaWebix" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<script src="/JS/burgermenu.js" defer></script>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<title>CreaWebix - Agence Web</title>
+</head>
+<body>
+	<!-- BARRE_DE_NAV -->
+	<nav>
+	<div class="logo">
+		<a href="#home" id="title">CreaWebix <img src="/favicon-96x96.png" alt="logo"  width="40px"></a>
+		<div class="underline"></div>
+	</div>
+
+	<div class="nav-links">
+		<a href="#home">Accueil</a>
+		<a href="#services">Services</a>
+		<!-- <a href="#portfolio">Portfolio</a>
+			<a href="#about">À propos</a> -->
+		<a href="#contact">Contact</a>
+		<a href="#contact" class="btn-burger">Devis Gratuit</a>
+	</div>
+	<a href="#contact" class="btn">Devis Gratuit</a>
+	<!-- Bouton hamburger pour mobile -->
+	<div class="burger">&#9776;</div>
+</nav>
+
+	<!-- MAIN CONTENT -->
+	<main id="home">
+		<!-- SECTION_PRESENTATION -->
+		<section class="presentation">
+			<div class="content">
+				<h1>Créons ensemble votre présence digitale</h1>
+				<p>
+					Agence web spécialisée dans la création de sites internet modernes, performants et sur-mesure.
+					De l'idée à la réalisation, nous donnons vie à vos projets digitaux.
+				</p>
+				<div class="btn-container">
+					<a href="#contact" class="bton">Démarrer un projet</a>
+					<!-- <a href="" class="btn transparent">Voir nos réalisations</a> -->
+				</div>
+				<div class="infos">
+					<p>
+						<span>50+</span><br> Sites créés
+					</p>
+					<p>
+						<span>98%</span><br> Clients satisfaits
+					</p>
+					<p>
+						<span>2 ans</span><br> D'expérience
+					</p>
+				</div>
+			</div>
+			<div class="image-container">
+
+				<img src="/IMAGES/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg" class="image"
+					alt="Image Accueil">
+				<div class="overlay1">
+					<img src="/ICONS/mobile.png" alt="">
+					<div>
+						<p>Responsive</p>
+						<p>Mobile-first</p>
+					</div>
+				</div>
+				<div class="overlay2">
+					<img src="/ICONS/code.png" alt="">
+					<div>
+						<p>Développement</p>
+						<p>Polyvalent</p>
+					</div>
+				</div>
+				<div class="overlay3">
+					<img src="/ICONS/palette.png" alt="">
+					<div>
+						<p>Design</p>
+						<p>UI/UX moderne</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- SECTION_SERVICES -->
+		<section class="services" id="services">
+			<br>
+			<br>
+			<br>
+			<div class="services-header">
+				<span class="tag">Nos Services</span>
+				<h2>Des solutions web complètes pour votre entreprise</h2>
+				<p>
+					Nous accompagnons les entreprises dans leur transformation digitale avec des services adaptés
+					à chaque besoin et budget.
+				</p>
+			</div>
+
+			<div class="services-grid">
+				<!-- Carte 1 -->
+				<div class="card">
+					<i class="fa-solid fa-globe icon"></i>
+					<div class="card-price">450€ - 900€</div>
+					<h3>Sites Web Vitrine</h3>
+					<p>Sites élégants et professionnels pour présenter votre entreprise et vos services avec impact.
+					</p>
+					<ul>
+						<li>Design responsive</li>
+						<li>Optimisation SEO</li>
+						<li>Formulaires de contact</li>
+						<li>Analytics intégrés</li>
+					</ul>
+					<a href="service-vitrine.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 2 -->
+				<div class="card">
+					<i class="fa-solid fa-cart-shopping icon"></i>
+					<div class="card-price">1500€ - 3000€</div>
+					<h3>E-commerce</h3>
+					<p>Boutiques en ligne complètes avec gestion des commandes, paiements sécurisés et tableau de
+						bord.</p>
+					<ul>
+						<li>Catalogue produits</li>
+						<li>Paiements sécurisés</li>
+						<li>Gestion stocks</li>
+						<li>Livraisons</li>
+					</ul>
+					<a href="service-ecommerce.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 3 -->
+				<div class="card">
+					<i class="fa-solid fa-mobile-screen icon"></i>
+					<div class="card-price">2250€ - 6000€</div>
+					<h3>Applications Web</h3>
+					<p>Applications web sur-mesure adaptées à vos besoins métiers avec interface intuitive.</p>
+					<ul>
+						<li>Interface personnalisée</li>
+						<li>Base de données</li>
+						<li>API intégrées</li>
+						<li>Dashboard admin</li>
+					</ul>
+					<a href="service-applications.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 4 -->
+				<div class="card">
+					<i class="fa-solid fa-magnifying-glass icon"></i>
+					<div class="card-price">300€ - 600€</div>
+					<h3>Référencement SEO</h3>
+					<p>Optimisation complète pour améliorer votre visibilité sur les moteurs de recherche.</p>
+					<ul>
+						<li>Audit SEO complet</li>
+						<li>Optimisation technique</li>
+						<li>Contenu optimisé</li>
+						<li>Suivi performances</li>
+					</ul>
+					<a href="service-seo.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 5 -->
+				<div class="card">
+					<i class="fa-solid fa-palette icon"></i>
+					<div class="card-price">300€ - 675€</div>
+					<h3>Design UI/UX</h3>
+					<p>Conception d’interfaces utilisateur modernes et expériences utilisateur optimisées.</p>
+					<ul>
+						<li>Maquettes Figma</li>
+						<li>Prototypage</li>
+						<li>Tests utilisateurs</li>
+						<li>Design system</li>
+					</ul>
+					<a href="service-uiux.html">En savoir plus →</a>
+				</div>
+
+				<!-- Carte 6 -->
+				<div class="card">
+					<i class="fa-solid fa-screwdriver-wrench icon"></i>
+					<div class="card-price">15€ - 45€/mois</div>
+					<h3>Maintenance & Support</h3>
+					<p>Maintenance technique, mises à jour de sécurité et support continu pour vos sites.</p>
+					<ul>
+						<li>Sauvegardes régulières</li>
+						<li>Mises à jour</li>
+						<li>Monitoring</li>
+						<li>Support technique</li>
+					</ul>
+					<a href="service-maintenance.html">En savoir plus →</a>
+				</div>
+				<!-- Carte 7 -->
+				<div class="card">
+					<i class="fa-solid fa-screwdriver-wrench icon"></i>
+					<div class="card-price">150€ - 375€</div>
+					<h3>Identité Visuelle</h3>
+					<p>Création d’une identité visuelle cohérente pour renforcer votre image de marque.</p>
+					<ul>
+						<li>Logo design</li>
+						<li>Charte graphique</li>
+						<li>Templates de communication</li>
+						<li>Support technique</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION_CONTACT -->
+		<br>
+		<br>
+		<br>
+		<section id="contact" class="contact">
+
+			<div class="contact-header">
+				<span class="tag">Contact</span>
+
+				<h2>Prêt à démarrer votre projet ?</h2>
+				<p>
+					Contactez-nous pour discuter de votre projet. Nous vous répondrons dans les 24h avec une
+					proposition
+					personnalisée et un devis gratuit.
+				</p>
+			</div>
+			<div class="contact-grid">
+				<!-- Infos de contact -->
+				<div class="contact-info">
+					<h3>Parlons de votre projet</h3>
+					<p>
+						Nous sommes là pour vous accompagner dans la réalisation de vos ambitions digitales.
+						Contactez-nous pour échanger sur vos besoins et obtenir un devis personnalisé.
+					</p>
+
+					<div class="info-cards">
+						<!-- <div class="info-card">
+							<h4 class="fas fa-map-marker-alt"> Adresse</h4>
+							<p>123 Rue de la Créativité<br>75001 Paris, France</p>
+						</div> -->
+						<div class="info-card">
+							<h4 class="fas fa-phone"> Téléphone</h4>
+							<p>+33 6 01 46 27 15</p>
+							<p>+33 6 21 17 98 11</p>
+						</div>
+						<div class="info-card">
+							<h4 class="fas fa-envelope"> Email</h4>
+							<p>webix1@outlook.fr</p>
+						</div>
+						<div class="info-card">
+							<h4 class="fas fa-clock"> Horaires</h4>
+							<p>Lun - Ven : 9h00 - 18h00<br>Samedi : 9h00 - 12h00</p>
+						</div>
+					</div>
+
+					<div class="process">
+						<h3>Notre Processus</h3>
+						<ul>
+							<li><strong>Consultation gratuite</strong> – Échange sur vos besoins et objectifs</li>
+							<li><strong>Devis personnalisé</strong> – Proposition détaillée sous 48h</li>
+							<li><strong>Développement</strong> – Réalisation avec suivi régulier</li>
+							<li><strong>Livraison & Support</strong> – Formation et accompagnement</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Formulaire -->
+				<div class="contact-form">
+					<h3>Demander un devis</h3>
+					<form method="post" action="/message">
+						<div class="form-group">
+							<input type="text" placeholder="Nom complet *" name="nom" id="nom" required>
+							<input type="email" placeholder="Email *" name="email" id="email" required>
+						</div>
+						<div class="form-group">
+							<input type="tel" placeholder="Téléphone" name="tel" id="tel">
+							<select name="service" id="service">
+								<option value="">Type de service *</option>
+								<option value="site-vitrine">Site Vitrine</option>
+								<option value="e-commerce">E-commerce</option>
+								<option value="app-web">Application Web</option>
+								<option value="seo">SEO</option>
+								<option value="design-uiux">Design UI/UX</option>
+								<option value="maintenance">Maintenance</option>
+								<option value="identite-visuelle">Identité Visuelle</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<select name="budget" id="budget">
+								<option value="">Budget estimé</option>
+								<option value="-1000">- de 1000€</option>
+								<option value="200-500">200€ - 500€</option>
+								<option value="+500">+ de 500€</option>
+							</select>
+						</div>
+						<textarea placeholder="Décrivez votre projet *" name="descr" id="descr" required></textarea>
+						<button type="submit" class="btn-submit">Envoyer ma demande</button>
+					</form>
+				</div>
+			</div>
+
+		</section>
+
+
+
+	</main>
+
+	<!-- FOOTER -->
+	<footer>
+  <!-- CTA -->
+  <div class="footer-cta">
+    <h2>Prêt à transformer votre idée en réalité ?</h2>
+    <p>
+      Obtenez un devis gratuit et personnalisé pour votre projet web. Notre équipe vous accompagne de la
+      conception à la mise en ligne.
+    </p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn">Demander un devis</a>
+      <a href="tel:+33601462715" class="btn-outline">06 01 46 27 15</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer principal -->
+  <div class="footer-main">
+    <!-- Col 1 -->
+    <div class="footer-col">
+      <h3>CréaWebix <img src="/favicon-96x96.png" alt="logo" width="40px"></h3>
+      <p>
+        Agence web créative spécialisée dans la création de sites internet modernes et performants.
+        Nous donnons vie à vos projets digitaux avec passion et expertise.
+      </p>
+      <div class="socials">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <!-- Col 2 -->
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="service-vitrine.html">Sites Web Vitrine</a></li>
+        <li><a href="service-ecommerce.html">E-commerce</a></li>
+        <li><a href="service-applications.html">Applications Web</a></li>
+        <li><a href="service-seo.html">Référencement SEO</a></li>
+        <li><a href="service-uiux.html">Design UI/UX</a></li>
+        <li><a href="service-maintenance.html">Maintenance</a></li>
+        <li><a href="#">Identité Visuelle</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3 -->
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="index.html#about">À Propos</a></li>
+        <!-- <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Témoignages</a></li> -->
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 4 -->
+    <div class="footer-col">
+      <h4>Contacts</h4>
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> </li>
+        <li><i class="fas fa-phone"></i> +33 6 01 46 27 15</li>
+        <li><i class="fas fa-envelope"></i> webix1@outlook.fr</li>
+      </ul>
+      <p class="guarantee">Réponse sous 24h garantie</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <p>© 2024 CréaWebix. Tous droits réservés.</p>
+    <div class="legal-links">
+      <a href="#">Mentions Légales</a>
+      <a href="#">Politique de Confidentialité</a>
+      <a href="#">CGV</a>
+      <a href="#home">↑</a>
+    </div>
+  </div>
+</footer>
+
+	<script>
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener("click", function (e) {
+				e.preventDefault();
+				document.querySelector(this.getAttribute("href")).scrollIntoView({
+					behavior: "smooth"
+				});
+			});
+		});
+	</script>
+</body>
+
+</html>

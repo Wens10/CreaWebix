@@ -2,10 +2,15 @@
   "name": "creawebix",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "format": "prettier --write src/**/*.ts",
+    "lint": "eslint src/**/*.ts --max-warnings=0",
+    "lint:fix": "eslint src/**/*.ts --max-warnings=0 --fix",
+    "build": "npx tsc -b",
+    "predev": "npm run lint:fix && npm run format && npm run build",
+    "start": "node dist/server.js",
+    "dev": "npm run predev && npm run start"
   },
   "repository": {
     "type": "git",
@@ -14,12 +19,28 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Wens10/CreaWebix/issues"
   },
   "homepage": "https://github.com/Wens10/CreaWebix#readme",
   "dependencies": {
-    "nodemailer": "^7.0.6"
+    "@server/core": "file:./core",
+    "chokidar": "^5.0.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "nodemailer": "^9.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^25.9.2",
+    "@types/nodemailer": "^8.0.1",
+    "eslint": "^10.4.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "prettier": "^3.8.3",
+    "tslib": "^2.8.1",
+    "typescript-eslint": "^8.61.0"
   }
 }

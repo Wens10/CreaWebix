@@ -1,0 +1,11 @@
+import { ChokidarOptions } from "chokidar";
+import { SupportedEncoding, SupportedExtname } from "./types.js";
+import { SecureServerOptions } from "http2";
+export declare const FILE_EXTENSIONS_TO_COMPRESS: string[];
+export declare const COMPRESSED_FILE_EXTENSIONS: string[];
+export declare const DEFAULT_WATCHER_OPTIONS: ChokidarOptions;
+export declare const SUPPORTED_METHODS: string[];
+export declare const SUPPORTED_ENCODING: SupportedEncoding[];
+export declare const SUPPORTED_EXTNAMES: SupportedExtname[];
+export declare const MIME_TYPES: Record<SupportedExtname, string>;
+export declare const DEFAULT_SECURE_SERVER_OPTIONS: SecureServerOptions;

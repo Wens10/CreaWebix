@@ -1,9 +1,7 @@
-*.pem
-*.br
-*.deflate
-*.gz
-*.zst
 node_modules
-package-lock.json
-config.json
-/dist
+dist
+.tsbuildinfo
+*.br
+*.gz
+*.pem
+*.env

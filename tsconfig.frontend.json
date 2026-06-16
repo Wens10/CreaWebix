@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src/frontend",
+    "outDir": "./public/js",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "ESNext"],
+    "types": []
+  },
+  "include": ["src/frontend/**/*"],
+  "exclude": ["**/node_modules", "**/.*/"]
+}

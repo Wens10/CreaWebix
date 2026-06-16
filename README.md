@@ -1,5 +1,3 @@
-## ⚙️ Installation et lancement
-
 1. **Cloner le projet**  
 
 ```bash
@@ -14,36 +12,48 @@ cd mon-projet
 npm i
 ```
 
-3. **Ajouter un fichier `config.json` à la racine du projet**
+3. **Ajouter un fichier `.env` à la racine du projet**
 Ce fichier contient la configuration du serveur (certificats SSL, port d’écoute et paramètres d’envoi d’e-mails).`
 
-Exemple de `config.json` :
+Exemple de `.env` :
 
-```json
-{
-  "certPath": "./certs/fullchain.pem",
-  "keyPath": "./certs/privkey.pem",
-  "port": 3000,
-  "emailSenderConfig": {
-    "sender": "mon.adresse@mail.com",
-    "password": "motDePasseSecret",
-    "host": "smtp.monfournisseur.com",
-    "port": 465,
-    "receiver": "destination@mail.com"
-  }
-}
+```env
+# Réseau
+HOSTNAME=localhost
+DOMAIN=test.local
+HTTP_PORT=8080
+HTTPS_PORT=8443
+
+# SSL
+CERT_DIR_PATH=./cert
+CERT_TYPE=self-signed
+FORCE_DOMAIN_USAGE=false
+
+# SMTP
+SMTP_USER=contact@example.com
+SMTP_PASSWORD=@MyPassword
+SMTP_HOST=ssl0.ovh.net
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_RECEIVER=example@example.com
 ```
 
-🔒 Note : ne partagez pas votre fichier config.json publiquement. Ajoutez-le à votre .gitignore si nécessaire.
+4. Créé les dossiers suivants à la racine du projet :
 
-4. Lancer le serveur
+- cert
+- cert-challenges
+- cert-errors
+
+5. Lancer le serveur
+
+Mode développement :
 
 ```bash
-node server.js
+npm run dev
 ```
 
-## 🚀 Utilisation
+Mode production :
 
-Une fois le serveur démarré avec `node server.js`, l’adresse du site (par exemple `https://localhost:3000`) sera affichée automatiquement dans la console.  
-
-*(Le port correspond à la valeur définie dans votre `config.json`)*  
+```bash
+npm run start
+```
