@@ -1,0 +1,16 @@
+[Unit]
+Description=Site CréaWebix
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# root : nécessaire pour les ports 80/443 et pour que le site renouvelle son certificat avec certbot
+User=root
+WorkingDirectory=/opt/creawebix
+ExecStart=/usr/bin/node dist/server.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
