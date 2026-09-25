@@ -20,9 +20,15 @@ export default (async (context, _headers, transporter) => {
 
       transporter.sendMail(
         {
-          from: config.smtpUser,
+          // Gmail refuse d'envoyer au nom d'une autre adresse : on envoie depuis
+          // notre compte et on met le client en "Répondre à"
+          from: {
+            name: `${nom ?? "Client"} via CreaWebix`,
+            address: config.smtpUser,
+          },
           to: config.smtpReceiver,
-          subject: "Nouveau devis",
+          ...(email ? {replyTo: {name: nom ?? "", address: email}} : {}),
+          subject: `Nouveau devis${nom ? ` - ${nom}` : ""}`,
           text: `Nom: ${nom}\nEmail: ${email}\nTéléphone: ${tel ?? "aucun"}\nService: ${service ?? "aucun"}\nBudget: ${budget ?? "aucun"}\nDescription :\n${descr}`,
         },
         (err) => {

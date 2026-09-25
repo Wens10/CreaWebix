@@ -10,7 +10,7 @@
     "build": "npx tsc -b",
     "predev": "npm run lint:fix && npm run format && npm run build",
     "start": "node dist/server.js",
-    "dev": "npm run predev && npm run start"
+    "dev": "npm run start"
   },
   "repository": {
     "type": "git",
