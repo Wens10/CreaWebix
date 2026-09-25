@@ -38,6 +38,16 @@ SMTP_SECURE=true
 SMTP_RECEIVER=creawebix@gmail.com
 ```
 
+Pour activer le chatbot, ajouter une clé API Groq (gratuite sur https://console.groq.com) :
+
+```env
+# Chatbot (optionnel : sans clé, le chat affiche qu'il est indisponible)
+GROQ_API_KEY=gsk_...
+# GROQ_MODEL=openai/gpt-oss-120b
+```
+
+Les consignes du chatbot (services, tarifs, contact) sont dans `src/backend/utils/workers/chatbot.ts` : à mettre à jour si les tarifs changent.
+
 Avec Gmail, `SMTP_PASSWORD` doit être un **mot de passe d'application** (https://myaccount.google.com/apppasswords, validation en deux étapes requise), pas le mot de passe du compte.
 
 Les demandes de devis sont envoyées depuis `SMTP_USER` vers `SMTP_RECEIVER`, avec l'e-mail du client en « Répondre à ».

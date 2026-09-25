@@ -17,4 +17,8 @@ export interface Config {
   smtpPort: number;
   smtpSecure: boolean;
   smtpReceiver: string;
+
+  // Chatbot (Groq)
+  groqApiKey: string | undefined;
+  groqModel: string;
 }

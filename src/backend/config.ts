@@ -11,6 +11,12 @@ function requireEnv(name: string): string {
   return value;
 }
 
+function optionalEnv(name: string): string | undefined {
+  const value = process.env[name];
+
+  return value === undefined || value === "" ? undefined : value;
+}
+
 function requireNumberEnv(name: string): number {
   const value = requireEnv(name);
   const number = Number(value);
@@ -49,6 +55,10 @@ export const config: Config = {
   smtpPort: requireNumberEnv("SMTP_PORT"),
   smtpSecure: process.env["SMTP_SECURE"] === "true",
   smtpReceiver: requireEnv("SMTP_RECEIVER"),
+
+  // Optionnel : sans clé, le chatbot répond 503
+  groqApiKey: optionalEnv("GROQ_API_KEY"),
+  groqModel: optionalEnv("GROQ_MODEL") ?? "openai/gpt-oss-120b",
 };
 
 export default config;

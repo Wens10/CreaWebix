@@ -102,3 +102,21 @@ html, body {
 }
 
 /* ── Fin CSS PAGES SERVICE ── */
+/* ── PAGES LÉGALES ── */
+.legal h2 {
+    font-size: 1.25rem;
+    margin: 32px 0 12px;
+}
+
+.legal ul li::before {
+    content: "•";
+}
+
+.legal a {
+    color: var(--cyan);
+}
+
+.legal .updated {
+    font-size: 0.85rem;
+    font-style: italic;
+}
